@@ -4,8 +4,32 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary: #0c88da;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background: black;
     color: white;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+html,
+div {
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: var(--primary);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: white;
+    }
 }

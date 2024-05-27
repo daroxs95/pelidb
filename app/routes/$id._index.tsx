@@ -12,10 +12,13 @@ export async function loader({params}: LoaderFunctionArgs) {
         throw new Response(`Not found`, {status: 404});
     }
     const movie = await getMovie(params.id);
+    if(!movie) {
+        throw new Response(`Not found`, {status: 404});
+    }
     return movie;
 }
 
-export default function Blog() {
+export default function DetailsPage() {
     const data = useLoaderData<typeof loader>();
 
     return (

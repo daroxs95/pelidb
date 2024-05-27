@@ -19,7 +19,9 @@ export function List({movies}: ListProps) {
                         src={movie.thumb_url}
                     />
                     <div className={styles.details}>
-                        <p>{movie.name}</p>
+                        <p className={styles.name}>{movie.name}</p>
+                        <p>{movie.rating} ⭐</p>
+                        <p>{movie.year}</p>
                     </div>
                 </Link>
             ))}

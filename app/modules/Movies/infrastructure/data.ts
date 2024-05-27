@@ -7,6 +7,7 @@ export async function getMovies() {
     for (let i = 0; i < data.length; i++) {
         data[i].id = data[i].imdb_url.split("/")[2]
     }
+    data.sort((a, b) => b.rating - a.rating);
     return data;
 }
 
