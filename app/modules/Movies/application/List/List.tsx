@@ -2,7 +2,7 @@ import {Movie} from "~/modules/Movies/domain/types";
 import styles from './List.module.css';
 import {ImageWithFallback} from "~/components/ImageWithFallback";
 import {Link} from "@remix-run/react";
-import {useMemo} from "react";
+import {useEffect, useState} from "react";
 import {getFavorites} from "~/modules/Movies/infrastructure/favorites";
 import {FavIcon} from "~/components/FavIcon";
 
@@ -11,7 +11,11 @@ interface ListProps {
 }
 
 export function List({movies}: ListProps) {
-    const favorites = useMemo(() => getFavorites(), []);
+    const [favorites, setFavorites] = useState<string[]>([]);
+
+    useEffect(() => {
+        setFavorites(getFavorites());
+    }, []);
 
     return (
         <div className={styles.grid}>

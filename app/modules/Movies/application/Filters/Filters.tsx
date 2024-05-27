@@ -49,7 +49,7 @@ export function Filters({onChange, value}: FiltersProps) {
     }, []);
 
     return (
-        <div className={`${styles.container} ${searching ? styles.open : ""}`}>
+        <div className={`${styles.container} ${searching ? styles.open : ""}`} onClick={() => setSearching(false)}>
             <div className={styles.controls}>
                 <input
                     ref={inputRef}
