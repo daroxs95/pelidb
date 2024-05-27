@@ -22,8 +22,8 @@ export default function DetailsPage() {
     const data = useLoaderData<typeof loader>();
 
     return (
-        <div>
+        <main>
             <Details movie={data}/>
-        </div>
+        </main>
     );
 }

@@ -40,9 +40,9 @@ export default function Index() {
   }, []);
 
   return (
-    <div>
+    <main>
       <List movies={filteredMovies} />
       <Filters onChange={onFilterChange} value={initialFilters || ""} />
-    </div>
+    </main>
   );
 }

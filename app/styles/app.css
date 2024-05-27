@@ -5,7 +5,7 @@
 }
 
 :root {
-    --primary: #0c88da;
+    --primary: #ca392b;
 }
 
 body {
@@ -21,7 +21,7 @@ html {
 html,
 div {
     &::-webkit-scrollbar {
-        width: 5px;
+        width: 7px;
     }
 
     &::-webkit-scrollbar-thumb {
