@@ -1,20 +1,16 @@
-import {ImgHTMLAttributes, useEffect, useState} from "react";
+import {ImgHTMLAttributes, useState} from "react";
 
 interface ImageWithFallbackProps extends ImgHTMLAttributes<HTMLImageElement> {
-    fallbackSrc: string;
+    fallbackSrc?: string;
 }
 
+// TODO: the onError only triggers on client navigation, not on first page load
 export function ImageWithFallback ({fallbackSrc, alt, src, ...rest}: ImageWithFallbackProps) {
-    const [imgSrc, setImgSrc] = useState(fallbackSrc);
+    const [imgSrc, setImgSrc] = useState(src);
 
     const onError = () => {
-        setImgSrc(fallbackSrc);
+        if(fallbackSrc) setImgSrc(fallbackSrc);
     }
-
-    // TODO: This is a trick to make onError work on first page load
-    useEffect(() => {
-        if(src) setImgSrc(src);
-    }, [src])
 
     return (
         <img src={imgSrc} onError={onError} alt={alt || ""} {...rest}/>

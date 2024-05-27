@@ -1,7 +1,7 @@
 import {Movie} from "~/modules/Movies/domain/types";
 import styles from './Details.module.css';
 import {ImageWithFallback} from "~/components/ImageWithFallback";
-import {getHDImage} from "~/modules/Movies/infrastructure/helpers";
+import {getImageHigh} from "~/modules/Movies/infrastructure/helpers";
 import {useNavigate} from '@remix-run/react';
 import {BackIcon} from "~/components/BackIcon";
 import {FavIcon} from "~/components/FavIcon";
@@ -37,7 +37,7 @@ export function Details({movie}: DetailsProps) {
         <div className={styles.container}>
             <ImageWithFallback
                 fallbackSrc={'https://placehold.co/1000x1000'}
-                src={getHDImage(movie.id)}
+                src={getImageHigh(movie.id)}
                 className={styles.image}
             />
 

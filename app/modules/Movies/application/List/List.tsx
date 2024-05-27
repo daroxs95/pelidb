@@ -5,6 +5,7 @@ import {Link} from "@remix-run/react";
 import {useEffect, useState} from "react";
 import {getFavorites} from "~/modules/Movies/infrastructure/favorites";
 import {FavIcon} from "~/components/FavIcon";
+import {getImageLow} from "~/modules/Movies/infrastructure/helpers";
 
 interface ListProps {
     movies: Movie[]
@@ -22,9 +23,9 @@ export function List({movies}: ListProps) {
             {movies.map((movie) => (
                 <Link to={`/${movie.id}`} key={movie.name} className={styles.item}>
                     <ImageWithFallback
-                        fallbackSrc='https://placehold.co/150x330'
+                        fallbackSrc={'https://placehold.co/300x300'}
                         className={styles.image}
-                        src={movie.thumb_url}
+                        src={getImageLow(movie.id)}
                     />
                     <div className={styles.details}>
                         <div className={styles.fav}>

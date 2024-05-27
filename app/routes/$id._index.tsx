@@ -4,7 +4,7 @@ import {LoaderFunctionArgs} from "@remix-run/router";
 import {getMovie} from "~/modules/Movies/infrastructure/data";
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-    return [{title: data?.name}];
+    return [{title: data?.name, description: data?.desc, keywords: data?.genre.join(","), "og:image": data?.image_url}];
 };
 
 export async function loader({params}: LoaderFunctionArgs) {
@@ -12,7 +12,7 @@ export async function loader({params}: LoaderFunctionArgs) {
         throw new Response(`Not found`, {status: 404});
     }
     const movie = await getMovie(params.id);
-    if(!movie) {
+    if (!movie) {
         throw new Response(`Not found`, {status: 404});
     }
     return movie;
