@@ -4,10 +4,11 @@ import {useDebounced} from "~/hooks/useDebounced";
 
 interface FiltersProps {
     onChange: (value: string) => void;
+    value?: string;
 }
 
-export function Filters({onChange}: FiltersProps) {
-    const [search, setSearch] = useState('');
+export function Filters({onChange, value}: FiltersProps) {
+    const [search, setSearch] = useState(value || '');
     const [searching, setSearching] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const isSearchingTimeout = useRef<any>(null);
@@ -24,6 +25,8 @@ export function Filters({onChange}: FiltersProps) {
 
     useEffect(() => {
         window.addEventListener('keydown', (e) => {
+            if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Escape') return;
+
             setSearching(true);
             if (isSearchingTimeout.current) clearTimeout(isSearchingTimeout.current);
             isSearchingTimeout.current = setTimeout(() => {

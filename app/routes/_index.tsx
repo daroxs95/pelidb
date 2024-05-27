@@ -3,8 +3,10 @@ import {useLoaderData} from "@remix-run/react";
 import {getMovies} from "~/modules/Movies/infrastructure/data";
 import {List} from "~/modules/Movies/application/List/List";
 import {Movie} from "~/modules/Movies/domain/types";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Filters} from "~/modules/Movies/application/Filters";
+import { useLocation } from "@remix-run/react";
+
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,15 +22,27 @@ export async function loader() {
 export default function Index() {
   const data = useLoaderData<typeof loader>();
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(data);
+  const location = useLocation();
+
+  const initialFilters = new URLSearchParams(location.search).get('s');
 
   const onFilterChange = (str: string) => {
     setFilteredMovies(data.filter((movie) => movie.name.toLowerCase().includes(str.toLowerCase())));
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('s', str);
+    history.replaceState(null, '', `${location.pathname}?${searchParams.toString()}`);
   }
+
+  useEffect(() => {
+    if (initialFilters) {
+      onFilterChange(initialFilters);
+    }
+  }, []);
 
   return (
     <div>
       <List movies={filteredMovies} />
-      <Filters onChange={onFilterChange} />
+      <Filters onChange={onFilterChange} value={initialFilters || ""} />
     </div>
   );
 }
