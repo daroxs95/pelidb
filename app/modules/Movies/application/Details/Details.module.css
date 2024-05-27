@@ -9,15 +9,19 @@
 }
 
 .image {
-    /*min-width: ;*/
-    max-width: max(200px, 40vw);
-    /*max-height: 700px;*/
+    max-width: 40vw;
     width: 100%;
     object-fit: cover;
-    height: 100vh;
+    max-height: 100vh;
+
+    @media (max-width: 768px) {
+        max-width: 100vw;
+        height: unset;
+    }
 }
 
 .info {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 20px;
