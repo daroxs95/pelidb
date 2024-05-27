@@ -36,7 +36,7 @@ export function Details({movie}: DetailsProps) {
     return (
         <div className={styles.container}>
             <ImageWithFallback
-                fallbackSrc={'https://placehold.co/1000x1000'}
+                fallbackSrc={'https://placehold.co/600x1000'}
                 src={getImageHigh(movie.id)}
                 className={styles.image}
             />
