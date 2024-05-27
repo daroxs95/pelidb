@@ -11,12 +11,14 @@
 .image {
     max-width: 40vw;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     max-height: 100vh;
+    object-position: left center;
 
     @media (max-width: 768px) {
         max-width: 100vw;
         height: unset;
+        object-position: center center;
     }
 }
 
