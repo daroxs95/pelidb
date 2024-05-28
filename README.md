@@ -4,6 +4,9 @@
 
 ## Development
 
+Create a `.env` file in the root of the project based on the `.env.example` file.
+
+```shellscript
 Run the Vite dev server:
 
 ```shellscript
@@ -11,6 +14,7 @@ npm run dev
 ```
 
 ## Deployment
+Create a `.env` file in the root of the project based on the `.env.example` file.
 
 First, build your app for production:
 
